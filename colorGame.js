@@ -10,11 +10,9 @@ var modeButtons = document.querySelectorAll(".mode");
 
 for(var i = 0; i < modeButtons.length; i++){
 	modeButtons[i].addEventListener("click",function(){
-		modeButtons[0].classList.remove("selected");
-		modeButtons[1].classList.remove("selected");
+		modeButtons.forEach(button => button.classList.remove("selected"));
 		this.classList.add("selected");
-		this.textContent === "Easy" 
-? numSquares =3 : numSquares=6;
+		numSquares = parseInt(this.dataset.squares);
 reset();	});
 }
 
@@ -39,19 +37,21 @@ resetButton.addEventListener("click", function(){
 	reset();
 });
 
+reset();
+
 colorDisplay.textContent = pickedColor;
 for(var i =0; i<squares.length; i++){
 	squares[i].style.background = colors[i];
 	squares[i].addEventListener("click", function(){
 		var clickedColor = this.style.background;
 		if(clickedColor === pickedColor){
-			messageDisplay.textContent = "correct!";
-			resetButton.textContent = "play Again?";
+			messageDisplay.textContent = "CORRECT!!!";
+			resetButton.textContent = "Play Again?";
 			changeColors(clickedColor);
 			h1.style.background = clickedColor;
 		} else{
 			this.style.background = "#232323";
-			messageDisplay.textContent = "try Again";
+			messageDisplay.textContent = "Try Again";
 		}
 	});
 }
